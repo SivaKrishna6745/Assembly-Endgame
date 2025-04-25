@@ -47,3 +47,21 @@ header {
     max-width: 350px;
     color: #8e8e8e;
 }
+
+.status {
+    background-color: #10a95b;
+    color: #f9f4da;
+    flex-direction: column;
+    border-radius: 0.25rem;
+    margin: 1.875rem 0;
+}
+
+.status-title {
+    font-size: 1.25rem;
+    margin: 0.3rem;
+}
+
+.status-subtitle {
+    font-size: 0.875rem;
+    margin: 0.3rem;
+}
