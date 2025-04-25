@@ -1,0 +1,49 @@
+/* reset */
+* {
+    box-sizing: border-box;
+    font-family: Inter, 'sans-serif';
+}
+
+/* utilities */
+.flex {
+    display: flex;
+}
+
+.fl-cntr {
+    justify-content: center;
+    align-items: center;
+}
+
+.grid {
+    display: grid;
+}
+
+.btn {
+    cursor: pointer;
+}
+
+/* styling */
+body {
+    background-color: #262626;
+    color: #d9d9d9;
+    padding: 1.25rem;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+header {
+    text-align: center;
+}
+
+.game-title {
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #f9f4da;
+}
+
+.game-desc {
+    font-size: 0.875rem;
+    max-width: 350px;
+    color: #8e8e8e;
+}
