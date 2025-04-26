@@ -65,3 +65,14 @@ header {
     font-size: 0.875rem;
     margin: 0.3rem;
 }
+
+.languages {
+    max-width: 350px;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.language-chip {
+    padding: 0.4rem;
+    border-radius: 0.4rem;
+}
