@@ -51,11 +51,18 @@ header {
 }
 
 .status {
-    background-color: #10a95b;
     color: #f9f4da;
     flex-direction: column;
     border-radius: 0.25rem;
     margin: 1.875rem 0;
+}
+
+.status.won {
+    background-color: #10a95b;
+}
+
+.status.lost {
+    background-color: #ba2a2a;
 }
 
 .status-title {
@@ -77,6 +84,22 @@ header {
 .language-chip {
     padding: 0.4rem;
     border-radius: 0.4rem;
+    position: relative;
+}
+
+.language-chip.lost::before {
+    content: '💀';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    border-radius: 0.4rem;
+    background-color: rgba(0, 0, 0, 0.7);
+    font-size: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .current-word {
