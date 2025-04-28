@@ -55,6 +55,7 @@ header {
     flex-direction: column;
     border-radius: 0.25rem;
     margin: 1.875rem 0;
+    min-height: 65px;
 }
 
 .status.won {
@@ -63,6 +64,11 @@ header {
 
 .status.lost {
     background-color: #ba2a2a;
+}
+
+.status.farewell-message {
+    background-color: #7a5ea7;
+    border: 0.1rem dashed #323232;
 }
 
 .status-title {
@@ -138,6 +144,11 @@ header {
     background-color: #ec5d49;
 }
 
+.keyboard button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+
 .new-game {
     background-color: #11b5e5;
     border: 1px solid #d7d7d7;
@@ -148,4 +159,8 @@ header {
     margin: 0 auto;
     margin-top: 2rem;
     font-size: 1rem;
+}
+
+.farewell-message > p {
+    font-style: italic;
 }

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { languages } from './languages.js';
+import { getFarewellText } from './utils.js';
 
 function App() {
     const [currentWord, setCurrentWord] = useState('react');
@@ -18,9 +19,15 @@ function App() {
             backgroundColor: lang.backgroundColor,
         };
         return (
-            <span key={lang.name} className={`language-chip ${wrongGuessCount > index ? 'lost' : ''}`} style={styles}>
-                {lang.name}
-            </span>
+            <>
+                <span
+                    key={lang.name}
+                    className={`language-chip ${wrongGuessCount > index ? 'lost' : ''}`}
+                    style={styles}
+                >
+                    {lang.name}
+                </span>
+            </>
         );
     });
 
@@ -55,6 +62,33 @@ function App() {
         );
     });
 
+    function renderGameStatus() {
+        if (hasWon) {
+            return (
+                <>
+                    <h2 className="status-title">You win!</h2>
+                    <p className="status-subtitle">Well done! 🎉</p>
+                </>
+            );
+        }
+        if (hasLost) {
+            return (
+                <>
+                    <h2 className="status-title">Game over!</h2>
+                    <p className="status-subtitle">You lose! Better startr learning Assembly 😢</p>
+                </>
+            );
+        }
+        if (!isGameOver && wrongGuessCount > 0) {
+            return (
+                <>
+                    <p className="flex fl-cntr">{getFarewellText(languages[wrongGuessCount - 1]?.name)}</p>
+                </>
+            );
+        }
+        return null;
+    }
+
     return (
         <>
             <header>
@@ -66,13 +100,11 @@ function App() {
             <main>
                 {
                     <section
-                        className={`status flex fl-cntr ${hasWon && 'won'} ${hasLost && 'lost'}`}
-                        style={{ visibility: hasWon || hasLost ? 'visible' : 'hidden' }}
+                        className={`status flex fl-cntr ${hasWon && 'won'} ${hasLost && 'lost'} ${
+                            !isGameOver && wrongGuessCount > 0 && 'farewell-message'
+                        }`}
                     >
-                        <h2 className="status-title">{hasWon ? 'You win!' : 'Game over!'}</h2>
-                        <p className="status-subtitle">
-                            {hasWon ? 'Well done! 🎉' : 'You lose! Better startr learning Assembly 😢'}
-                        </p>
+                        {renderGameStatus()}
                     </section>
                 }
                 <section className="languages flex fl-cntr">{languageChips}</section>
