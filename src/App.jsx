@@ -55,6 +55,8 @@ function App() {
                 key={letter}
                 className={`btn ${isCorrect && 'success'} ${isWrong && 'failure'}`}
                 onClick={() => addGuessedLetter(letter)}
+                aria-disabled={isGameOver}
+                aria-label={`letter ${letter}`}
                 disabled={isGameOver && !isGuessed}
             >
                 {letter.toUpperCase()}
@@ -100,6 +102,8 @@ function App() {
             <main>
                 {
                     <section
+                        aria-live="polite"
+                        role="status"
                         className={`status flex fl-cntr ${hasWon && 'won'} ${hasLost && 'lost'} ${
                             !isGameOver && wrongGuessCount > 0 && 'farewell-message'
                         }`}
@@ -109,6 +113,10 @@ function App() {
                 }
                 <section className="languages flex fl-cntr">{languageChips}</section>
                 <section className="current-word flex fl-cntr">{currentWordsSection}</section>
+                <section className="sr-only" aria-live="polite" role="status">
+                    current word is{' '}
+                    {currentWord.split('').map((letter) => (guessedLetters.includes(letter) ? letter + '.' : 'blank'))}
+                </section>
                 <section className="keyboard flex fl-cntr">{keyboard}</section>
                 {isGameOver && <button className="new-game btn">New Game</button>}
             </main>
