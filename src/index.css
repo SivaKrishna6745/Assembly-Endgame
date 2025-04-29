@@ -121,6 +121,10 @@ header {
     width: 35px;
 }
 
+.current-word span.missed-letter {
+    color: #ec5d49;
+}
+
 .keyboard {
     margin-top: 2rem;
     max-width: 350px;

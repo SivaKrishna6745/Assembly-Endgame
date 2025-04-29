@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { languages } from './languages.js';
 import { getFarewellText, getRandomWord } from './utils.js';
+import Confetti from 'react-confetti';
 
 function App() {
     const [currentWord, setCurrentWord] = useState(() => getRandomWord());
@@ -34,8 +35,11 @@ function App() {
 
     const guessedLettersSet = new Set(guessedLetters);
     const currentWordsSection = currentWord.split('').map((letter, index) => (
-        <span key={index} className="flex fl-cntr">
-            {guessedLettersSet.has(letter) && letter.toUpperCase()}
+        <span
+            key={index}
+            className={`flex fl-cntr ${hasLost && !guessedLetters.includes(letter) ? 'missed-letter' : ''}`}
+        >
+            {hasLost ? letter.toUpperCase() : guessedLettersSet.has(letter) && letter.toUpperCase()}
         </span>
     ));
 
@@ -93,6 +97,7 @@ function App() {
 
     return (
         <>
+            {hasWon && <Confetti numberOfPieces={500} />}
             <header>
                 <h1 className="game-title">Assembly: Endgame</h1>
                 <p className="game-desc">
