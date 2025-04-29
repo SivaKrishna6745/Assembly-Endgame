@@ -75,7 +75,7 @@ function App() {
             return (
                 <>
                     <h2 className="status-title">Game over!</h2>
-                    <p className="status-subtitle">You lose! Better startr learning Assembly 😢</p>
+                    <p className="status-subtitle">You lose! Better start learning Assembly 😢</p>
                 </>
             );
         }
