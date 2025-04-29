@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { languages } from './languages.js';
-import { getFarewellText } from './utils.js';
+import { getFarewellText, getRandomWord } from './utils.js';
 
 function App() {
-    const [currentWord, setCurrentWord] = useState('react');
+    const [currentWord, setCurrentWord] = useState(() => getRandomWord());
     const [guessedLetters, setGuessedLetters] = useState([]);
     const alphabet = 'abcdefghijklmnopqrstuvwxyz';
     const maxNoOfGuesses = 8;
@@ -86,6 +86,11 @@ function App() {
         return null;
     }
 
+    function handleNewGame() {
+        setCurrentWord(() => getRandomWord());
+        setGuessedLetters([]);
+    }
+
     return (
         <>
             <header>
@@ -108,6 +113,7 @@ function App() {
                 }
                 <section className="languages flex fl-cntr">{languageChips}</section>
                 <section className="current-word flex fl-cntr">{currentWordsSection}</section>
+                {/* Provides game updates for screen reader users */}
                 {guessedLetters.length > 0 && (
                     <section className="sr-only" aria-live="polite" role="status">
                         <p>
@@ -126,7 +132,11 @@ function App() {
                     </section>
                 )}
                 <section className="keyboard flex fl-cntr">{keyboard}</section>
-                {isGameOver && <button className="new-game btn">New Game</button>}
+                {isGameOver && (
+                    <button className="new-game btn" onClick={handleNewGame}>
+                        New Game
+                    </button>
+                )}
             </main>
         </>
     );
